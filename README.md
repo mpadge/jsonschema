@@ -24,16 +24,19 @@ against [JSON Schema Draft
 
 ## Example
 
-This example is taken directly from [the
-`pboettch/json-schema-validator/`
+This example is modified from [the `pboettch/json-schema-validator/`
 README](https://github.com/pboettch/json-schema-validator/). The schema
-provided there illustrates the general structure of JSON schemas:
+illustrates the general structure of JSON schemas:
 
 ``` r
 schema <- '{
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "A person",
     "properties": {
+        "id": {
+            "description": "Unique identifier",
+            "type": "integer"
+        },
         "name": {
             "description": "Name",
             "type": "string"
@@ -46,6 +49,7 @@ schema <- '{
         }
     },
     "required": [
+                 "id",
                  "name",
                  "age"
                  ],
@@ -58,9 +62,11 @@ validate against that schema:
 
 ``` r
 person_bad <- '{
+    "id": "nope",
     "age": 42
 }'
 person_good <- '{
+    "id": 1,
     "name": "Albert",
     "age": 42
 }'
@@ -84,7 +90,8 @@ jsonschema_validate ("schema.json", "person_good.json")
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
-    ## JSON Error: '' - '{"age":42}': required property 'name' not found in object
+    ## JSON Error: '' - '{"age":42,"id":"nope"}': required property 'name' not found in object
+    ## JSON Error: '/id' - '"nope"': unexpected instance type
 
 ## Prior Art
 
