@@ -93,7 +93,7 @@ single function:
 
 ```{r}
 library (jsonschema)
-jsonschema_validate ("schema.json", "person_good.json")
+jsonschema_validate ("schema.json", "person_good.json") # no output
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 

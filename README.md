@@ -86,7 +86,7 @@ its single function:
 
 ``` r
 library (jsonschema)
-jsonschema_validate ("schema.json", "person_good.json")
+jsonschema_validate ("schema.json", "person_good.json") # no output
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
@@ -100,9 +100,9 @@ x <- jsonschema_validate ("schema.json", "person_bad.json", quiet = TRUE)
 print (x)
 ```
 
-    ##    id                                          msg
-    ## 1     required property 'name' not found in object
-    ## 2 /id                     unexpected instance type
+    ##    id                                          msg expected_type
+    ## 1     required property 'name' not found in object              
+    ## 2 /id                     unexpected instance type       integer
 
 ## Prior Art
 
