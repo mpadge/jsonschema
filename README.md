@@ -37,6 +37,10 @@ schema <- '{
             "description": "Unique identifier",
             "type": "integer"
         },
+        "date": {
+            "type": "string",
+            "format": "date"
+        },
         "name": {
             "description": "Name",
             "type": "string"
@@ -50,6 +54,7 @@ schema <- '{
     },
     "required": [
                  "id",
+                 "date",
                  "name",
                  "age"
                  ],
@@ -63,10 +68,12 @@ validate against that schema:
 ``` r
 person_bad <- '{
     "id": "nope",
+    "date": "2022-02",
     "age": 42
 }'
 person_good <- '{
     "id": 1,
+    "date": "2022-02-02",
     "name": "Albert",
     "age": 42
 }'
@@ -91,6 +98,7 @@ jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
     ## JSON Error: '': required property 'name' not found in object
+    ## JSON Error: '/date': format-checking failed: 2022-02 is not a date string according to RFC 3339.
     ## JSON Error: '/id': unexpected instance type
 
 The results can be captured in a `data.frame` object like this:
@@ -100,9 +108,10 @@ x <- jsonschema_validate ("schema.json", "person_bad.json", quiet = TRUE)
 print (x)
 ```
 
-    ##    id                                          msg expected_type
-    ## 1     required property 'name' not found in object              
-    ## 2 /id                     unexpected instance type       integer
+    ##      id                                                 msg expected_type
+    ## 1              required property 'name' not found in object
+    ## 2 /date 2022-02 is not a date string according to RFC 3339.        string
+    ## 3   /id                            unexpected instance type       integer
 
 ## Prior Art
 

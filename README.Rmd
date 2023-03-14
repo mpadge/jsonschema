@@ -44,6 +44,10 @@ schema <- '{
             "description": "Unique identifier",
             "type": "integer"
         },
+        "date": {
+            "type": "string",
+            "format": "date"
+        },
         "name": {
             "description": "Name",
             "type": "string"
@@ -57,6 +61,7 @@ schema <- '{
     },
     "required": [
                  "id",
+                 "date",
                  "name",
                  "age"
                  ],
@@ -70,10 +75,12 @@ against that schema:
 ```{r}
 person_bad <- '{
     "id": "nope",
+    "date": "2022-02",
     "age": 42
 }'
 person_good <- '{
     "id": 1,
+    "date": "2022-02-02",
     "name": "Albert",
     "age": 42
 }'
