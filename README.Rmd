@@ -90,6 +90,11 @@ jsonschema_validate ("schema.json", "person_good.json")
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
+## Prior Art
+
+The ['jsonvalidate' package](https://docs.ropensci.org/jsonvalidate/) also
+validates JSON files against schemas, through wrapping two JavaScript
+libraries.
 
 
 ## Code of Conduct

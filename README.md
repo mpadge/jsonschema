@@ -86,6 +86,12 @@ jsonschema_validate ("schema.json", "person_bad.json")
 
     ## JSON Error: '' - '{"age":42}': required property 'name' not found in object
 
+## Prior Art
+
+The [‘jsonvalidate’ package](https://docs.ropensci.org/jsonvalidate/)
+also validates JSON files against schemas, through wrapping two
+JavaScript libraries.
+
 ## Code of Conduct
 
 Please note that this package is released with a [Contributor Code of
