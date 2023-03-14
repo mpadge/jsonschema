@@ -15,8 +15,8 @@ functionality comes directly from [Patrick Boettcher’s
 ‘json-schema-validator’ C++
 library](https://github.com/pboettch/json-schema-validator/), along with
 [Neils Lohmann’s ‘Modern JSON for C++’
-library](https://github.com/pboettch/json-schema-validator). Both of
-these libraries are included here.
+library](https://github.com/nlohmann/json). Both of these libraries are
+included here.
 
 The ‘json-schema-validator’ library, and hence this package, validates
 against [JSON Schema Draft
