@@ -13,11 +13,31 @@
 #' @export
 jsonschema_validate <- function (schema = NULL, json = NULL, quiet = FALSE) {
 
+    with_instance <- FALSE
+
     if (quiet) {
-        x <- utils::capture.output (rcpp_json_validate (schema, json))
+        x <- utils::capture.output (rcpp_json_validate (schema, json, with_instance))
     } else {
-        x <- rcpp_json_validate (schema, json)
+        x <- rcpp_json_validate (schema, json, with_instance)
     }
 
-    invisible (x)
+    invisible (post_process_validation (x))
+}
+
+post_process_validation <- function (x) {
+
+    x0 <- x
+    x <- gsub ("^JSON\\s+Error\\:\\s+", "", x)
+
+    ids <- regmatches (x, gregexpr ("\\'[^\\']*\\'", x))
+    ids <- vapply (ids, function (i) {
+        gsub ("\\'", "", i [1])
+    }, character (1L))
+
+    msgs <- gsub ("^.*\\:\\s+", "", x)
+
+    data.frame (
+        id = ids,
+        msg = msgs
+    )
 }

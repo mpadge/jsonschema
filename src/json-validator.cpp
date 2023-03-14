@@ -6,7 +6,7 @@
 #include <Rcpp.h>
 
 // [[Rcpp::export]]
-void rcpp_json_validate (const std::string schema_name, const std::string json_name) {
+void rcpp_json_validate (const std::string schema_name, const std::string json_name, const bool with_instance) {
 
     std::ifstream f_s (schema_name);
     json schema = nlohmann::json::parse (f_s);
@@ -32,8 +32,7 @@ void rcpp_json_validate (const std::string schema_name, const std::string json_n
         out += "json validation failed: " + estr + "\n";
     }
 
-    // custom error hanlder:
-    class custom_error_handler : public nlohmann::json_schema::basic_error_handler
+    class error_handler_with_instance : public nlohmann::json_schema::basic_error_handler
     {
         void error(const nlohmann::json_pointer<std::basic_string<char, std::char_traits<char>, std::allocator<char>>> &pointer, const json &instance,
             const std::string &message) 
@@ -43,6 +42,22 @@ void rcpp_json_validate (const std::string schema_name, const std::string json_n
         }
     };
 
-    custom_error_handler err;
-    validator.validate (json_data, err);
+    class error_handler_without_instance : public nlohmann::json_schema::basic_error_handler
+    {
+        void error(const nlohmann::json_pointer<std::basic_string<char, std::char_traits<char>, std::allocator<char>>> &pointer, const json &instance,
+            const std::string &message) 
+        {
+            nlohmann::json_schema::basic_error_handler::error(pointer, instance, message);
+            Rcpp::Rcout << "JSON Error: '" << pointer << "': " << message << std::endl;
+        }
+    };
+
+    if (with_instance)
+    {
+        error_handler_with_instance err;
+        validator.validate (json_data, err);
+    } else {
+        error_handler_without_instance err;
+        validator.validate (json_data, err);
+    }
 }

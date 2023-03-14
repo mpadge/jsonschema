@@ -11,19 +11,20 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // rcpp_json_validate
-void rcpp_json_validate(const std::string schema_name, const std::string json_name);
-RcppExport SEXP _jsonschema_rcpp_json_validate(SEXP schema_nameSEXP, SEXP json_nameSEXP) {
+void rcpp_json_validate(const std::string schema_name, const std::string json_name, const bool with_instance);
+RcppExport SEXP _jsonschema_rcpp_json_validate(SEXP schema_nameSEXP, SEXP json_nameSEXP, SEXP with_instanceSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string >::type schema_name(schema_nameSEXP);
     Rcpp::traits::input_parameter< const std::string >::type json_name(json_nameSEXP);
-    rcpp_json_validate(schema_name, json_name);
+    Rcpp::traits::input_parameter< const bool >::type with_instance(with_instanceSEXP);
+    rcpp_json_validate(schema_name, json_name, with_instance);
     return R_NilValue;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_jsonschema_rcpp_json_validate", (DL_FUNC) &_jsonschema_rcpp_json_validate, 2},
+    {"_jsonschema_rcpp_json_validate", (DL_FUNC) &_jsonschema_rcpp_json_validate, 3},
     {NULL, NULL, 0}
 };
 
