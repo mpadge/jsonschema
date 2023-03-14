@@ -19,18 +19,12 @@ void rcpp_json_validate (const std::string schema_name, const std::string json_n
         validator.set_root_schema(schema); // insert root-schema
     } catch (const std::exception &e) {
         const std::string estr = std::to_string(*e.what());
-        out += "Validation of schema failed: " + estr + "\n";
+        out += "ERROR: Validation of schema failed: " + estr + "\n";
+        Rcpp::stop (out);
     }
 
     std::ifstream f_j (json_name);
     json json_data = nlohmann::json::parse (f_j);
-
-    try {
-        validator.validate (json_data);
-    } catch (const std::exception &e) {
-        const std::string estr = std::to_string(*e.what());
-        out += "json validation failed: " + estr + "\n";
-    }
 
     class error_handler_with_instance : public nlohmann::json_schema::basic_error_handler
     {
