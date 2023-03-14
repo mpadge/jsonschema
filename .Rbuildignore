@@ -1,2 +1,5 @@
 ^\.pre-commit-config\.yaml$
 ^codemeta\.json$
+inst/WORDLIST$
+^\.hooks$
+^\.github$
