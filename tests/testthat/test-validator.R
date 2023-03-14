@@ -64,5 +64,5 @@ test_that ("validate", {
 
     expect_s3_class (x, "data.frame")
     expect_equal (nrow (x), 2L)
-    expect_equal (ncol (x), 2L)
+    expect_equal (ncol (x), 3L)
 })

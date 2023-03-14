@@ -50,6 +50,10 @@ post_process_validation <- function (x) {
 
 add_default_types <- function (x, schema) {
 
+    if (is.null (x)) {
+        return (x)
+    }
+
     ids <- gsub ("^\\/", "", x$id)
     index <- which (nzchar (ids))
 
