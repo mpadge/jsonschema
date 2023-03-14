@@ -26,14 +26,14 @@ schema <- '{
 }'
 f_schema <- fs::path (fs::path_temp (), "schema.json")
 if (!fs::file_exists (f_schema)) {
-    writeLines (x, f_schema)
+    writeLines (schema, f_schema)
 }
 
 bad <- '{
     "id": "nope",
     "age": 42
 }'
-f_bad <- fs::path (fs::path_temp (), "schema.json")
+f_bad <- fs::path (fs::path_temp (), "bad.json")
 if (!fs::file_exists (f_bad)) {
     writeLines (bad, f_bad)
 }
@@ -43,21 +43,26 @@ good <- '{
     "name": "Albert",
     "age": 42
 }'
-f_good <- fs::path (fs::path_temp (), "schema.json")
+f_good <- fs::path (fs::path_temp (), "good.json")
 if (!fs::file_exists (f_good)) {
     writeLines (good, f_good)
 }
 
 test_that ("validate", {
+    expect_silent (
+        x <- jsonschema_validate (f_schema, f_good, quiet = FALSE)
+    )
+    expect_null (x)
+
     expect_output (
         x <- jsonschema_validate (f_schema, f_bad, quiet = FALSE)
     )
     expect_null (x)
-
     expect_silent (
         x <- jsonschema_validate (f_schema, f_bad, quiet = TRUE)
     )
+
     expect_s3_class (x, "data.frame")
-    expect_equal (nrow (x), 3L)
+    expect_equal (nrow (x), 2L)
     expect_equal (ncol (x), 2L)
 })
