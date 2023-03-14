@@ -10,3 +10,7 @@ test <- function() {
     .Call(`_jsonschema_test`)
 }
 
+rcpp_test <- function(schema_name, json_name) {
+    invisible(.Call(`_jsonschema_rcpp_test`, schema_name, json_name))
+}
+

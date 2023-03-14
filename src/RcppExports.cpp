@@ -20,9 +20,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_test
+void rcpp_test(const std::string schema_name, const std::string json_name);
+RcppExport SEXP _jsonschema_rcpp_test(SEXP schema_nameSEXP, SEXP json_nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::string >::type schema_name(schema_nameSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type json_name(json_nameSEXP);
+    rcpp_test(schema_name, json_name);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_jsonschema_test", (DL_FUNC) &_jsonschema_test, 0},
+    {"_jsonschema_rcpp_test", (DL_FUNC) &_jsonschema_rcpp_test, 2},
     {NULL, NULL, 0}
 };
 
