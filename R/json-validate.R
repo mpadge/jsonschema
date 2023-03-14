@@ -14,7 +14,7 @@
 jsonschema_validate <- function (schema = NULL, json = NULL, quiet = FALSE) {
 
     if (quiet) {
-        x <- capture.output (rcpp_json_validate (schema, json))
+        x <- utils::capture.output (rcpp_json_validate (schema, json))
     } else {
         x <- rcpp_json_validate (schema, json)
     }
