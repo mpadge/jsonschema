@@ -97,6 +97,14 @@ jsonschema_validate ("schema.json", "person_good.json")
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
+The results can be captured in a `data.frame` object like this:
+
+```{r}
+x <- jsonschema_validate ("schema.json", "person_bad.json", quiet = TRUE)
+print (x)
+```
+
+
 ## Prior Art
 
 The ['jsonvalidate' package](https://docs.ropensci.org/jsonvalidate/) also

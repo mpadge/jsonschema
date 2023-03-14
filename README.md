@@ -90,8 +90,19 @@ jsonschema_validate ("schema.json", "person_good.json")
 jsonschema_validate ("schema.json", "person_bad.json")
 ```
 
-    ## JSON Error: '' - '{"age":42,"id":"nope"}': required property 'name' not found in object
-    ## JSON Error: '/id' - '"nope"': unexpected instance type
+    ## JSON Error: '': required property 'name' not found in object
+    ## JSON Error: '/id': unexpected instance type
+
+The results can be captured in a `data.frame` object like this:
+
+``` r
+x <- jsonschema_validate ("schema.json", "person_bad.json", quiet = TRUE)
+print (x)
+```
+
+    ##    id                                          msg
+    ## 1     required property 'name' not found in object
+    ## 2 /id                     unexpected instance type
 
 ## Prior Art
 
