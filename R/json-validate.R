@@ -21,7 +21,10 @@ jsonschema_validate <- function (schema = NULL, json = NULL, quiet = FALSE) {
         x <- rcpp_json_validate (schema, json, with_instance)
     }
 
-    invisible (post_process_validation (x))
+    x <- post_process_validation (x)
+    x <- add_default_types (x, schema)
+
+    invisible (x)
 }
 
 post_process_validation <- function (x) {
@@ -43,4 +46,18 @@ post_process_validation <- function (x) {
         id = ids,
         msg = msgs
     )
+}
+
+add_default_types <- function (x, schema) {
+
+    ids <- gsub ("^\\/", "", x$id)
+    index <- which (nzchar (ids))
+
+    s <- jsonlite::read_json (schema)
+    x$expected_type <- ""
+    x$expected_type [index] <- vapply (index, function (i) {
+        s$properties [[ids [i]]]$type
+    }, character (1L))
+
+    return (x)
 }
