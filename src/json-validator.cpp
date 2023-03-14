@@ -1,4 +1,5 @@
 #include "json-validator.h"
+#include "nlohmann/json-schema.hpp"
 
 // Modified from template at
 // https://github.com/pboettch/json-schema-validator
@@ -11,7 +12,8 @@ void rcpp_json_validate (const std::string schema_name, const std::string json_n
     std::ifstream f_s (schema_name);
     json schema = nlohmann::json::parse (f_s);
 
-    json_validator validator; // create validator
+    json_validator validator (nullptr,
+            nlohmann::json_schema::default_string_format_check); // create validator
 
     std::string out = "";
 

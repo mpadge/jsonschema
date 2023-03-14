@@ -5,7 +5,7 @@
   "description": "Use a 'JSON' schema to validate a local 'JSON' file.",
   "name": "jsonschema: Use a 'JSON' schema to validate a local 'JSON' file",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1.024",
+  "version": "0.0.1.025",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
