@@ -55,14 +55,14 @@ test_that ("validate", {
     expect_null (x)
 
     expect_output (
-        x <- jsonschema_validate (f_schema, f_bad, quiet = FALSE)
+        x1 <- jsonschema_validate (f_schema, f_bad, quiet = FALSE)
     )
-    expect_null (x)
     expect_silent (
-        x <- jsonschema_validate (f_schema, f_bad, quiet = TRUE)
+        x2 <- jsonschema_validate (f_schema, f_bad, quiet = TRUE)
     )
+    expect_identical (x1, x2)
 
-    expect_s3_class (x, "data.frame")
-    expect_equal (nrow (x), 2L)
-    expect_equal (ncol (x), 3L)
+    expect_s3_class (x1, "data.frame")
+    expect_equal (nrow (x1), 2L)
+    expect_equal (ncol (x1), 3L)
 })

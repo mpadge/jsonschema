@@ -12,11 +12,10 @@ jsonschema_validate(schema = NULL, json = NULL, quiet = FALSE)
 \item{json}{Path to a local JSON file to be validated against the schema.}
 
 \item{quiet}{If \code{FALSE} (default), print all error messages generating in
-parsing the JSON file to screen, in which case function returns nothing. If
-\code{TRUE}, function returns all errors as a character string.}
+parsing the JSON file to screen.}
 }
 \value{
-Nothing if \code{quiet = FALSE}; otherwise all errors encountered  in
+(Invisibly) A \code{data.frame} detailing all errors encountered  in
 parsing the JSON file.
 }
 \description{
