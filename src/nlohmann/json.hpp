@@ -3817,11 +3817,28 @@ using is_json_pointer = is_specialization_of<::nlohmann::json_pointer, uncvref_t
 template<typename Compare, typename A, typename B, typename = void>
 struct is_comparable : std::false_type {};
 
+// MP: rcmdcheck fails on windows here because of deprecated-declarations warning
+#if defined(__gcc__)
+    #pragma gcc diagnostic push
+    #pragma gcc diagnostic ignored "-Wdeprecated-declarations"
+#endif
+#if defined(__clang__)
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 template<typename Compare, typename A, typename B>
 struct is_comparable<Compare, A, B, void_t<
 decltype(std::declval<Compare>()(std::declval<A>(), std::declval<B>())),
 decltype(std::declval<Compare>()(std::declval<B>(), std::declval<A>()))
 >> : std::true_type {};
+
+#if defined(__gcc__)
+    #pragma gcc diagnostic pop
+#endif
+#if defined(__clang__)
+    #pragma clang diagnostic pop
+#endif
 
 template<typename T>
 using detect_is_transparent = typename T::is_transparent;
