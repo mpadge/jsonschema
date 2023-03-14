@@ -3821,8 +3821,7 @@ struct is_comparable : std::false_type {};
 #if defined(__gcc__)
     #pragma gcc diagnostic push
     #pragma gcc diagnostic ignored "-Wdeprecated-declarations"
-#endif
-#if defined(__clang__)
+#elif defined(__clang__)
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #endif
@@ -3835,8 +3834,7 @@ decltype(std::declval<Compare>()(std::declval<B>(), std::declval<A>()))
 
 #if defined(__gcc__)
     #pragma gcc diagnostic pop
-#endif
-#if defined(__clang__)
+#elif defined(__clang__)
     #pragma clang diagnostic pop
 #endif
 
