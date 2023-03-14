@@ -39,7 +39,7 @@ void rcpp_test (const std::string schema_name, const std::string json_name) {
             const std::string &message) 
         {
             nlohmann::json_schema::basic_error_handler::error(pointer, instance, message);
-            Rcpp::Rcout << "ERROR: '" << pointer << "' - '" << instance << "': " << message << "\n";
+            Rcpp::Rcout << "JSON Error: '" << pointer << "' - '" << instance << "': " << message << "\n";
         }
     };
 
