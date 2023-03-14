@@ -5,7 +5,7 @@
   "description": "Use a 'JSON' schema to validate a local 'JSON' file.",
   "name": "jsonschema: Use a 'JSON' schema to validate a local 'JSON' file",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.1.007",
+  "version": "0.0.1.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -69,8 +69,10 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=Rcpp"
     },
-    "SystemRequirements": {}
+    "SystemRequirements": null
   },
-  "fileSize": "0KB",
-  "codeRepository": "https://github.com/mpadge/jsonschema"
+  "fileSize": "21733.031KB",
+  "codeRepository": "https://github.com/mpadge/jsonschema",
+  "contIntegration": ["https://github.com/mpadge/jsonschema/actions?query=workflow%3AR-CMD-check", "https://codecov.io/gh/mpadge/jsonschema"],
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }

@@ -6,7 +6,7 @@
 #include <Rcpp.h>
 
 // [[Rcpp::export]]
-void rcpp_test (const std::string schema_name, const std::string json_name) {
+void rcpp_json_validate (const std::string schema_name, const std::string json_name) {
 
     std::ifstream f_s (schema_name);
     json schema = nlohmann::json::parse (f_s);
