@@ -1,4 +1,4 @@
-#include "json-patch.hpp"
+#include "json-patch.h"
 
 #include "nlohmann/json-schema.hpp"
 

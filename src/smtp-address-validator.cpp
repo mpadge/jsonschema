@@ -27,7 +27,7 @@ SOFTWARE.
 */
 
 #line 1 "smtp-address-validator.rl"
-#include "smtp-address-validator.hpp"
+#include "smtp-address-validator.h"
 
 #line 110 "smtp-address-validator.rl"
 

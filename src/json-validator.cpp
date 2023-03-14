@@ -9,7 +9,7 @@
 #include "nlohmann/json-schema.hpp"
 #include "nlohmann/json.hpp"
 
-#include "json-patch.hpp"
+#include "json-patch.h"
 
 #include <deque>
 #include <memory>
