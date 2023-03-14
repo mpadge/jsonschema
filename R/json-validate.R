@@ -26,7 +26,10 @@ jsonschema_validate <- function (schema = NULL, json = NULL, quiet = FALSE) {
 
 post_process_validation <- function (x) {
 
-    x0 <- x
+    if (is.null (x)) {
+        return (x)
+    }
+
     x <- gsub ("^JSON\\s+Error\\:\\s+", "", x)
 
     ids <- regmatches (x, gregexpr ("\\'[^\\']*\\'", x))
