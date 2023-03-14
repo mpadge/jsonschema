@@ -11,5 +11,11 @@ Use a 'JSON' schema to validate a local 'JSON' file.
 \author{
 \strong{Maintainer}: Mark Padgham \email{mark.padgham@email.com} (\href{https://orcid.org/0000-0003-2172-5265}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Patrick Boettcher (Original author of included 'pboettch/json-schema-validator' code) [copyright holder]
+  \item Niels Lohmann (Original author of included 'nlohmann/json' code) [copyright holder]
+}
+
 }
 \keyword{internal}

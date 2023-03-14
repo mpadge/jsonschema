@@ -1,9 +1,13 @@
 Package: jsonschema
 Title: Use a 'JSON' schema to validate a local 'JSON' file
-Version: 0.0.1.002
+Version: 0.0.1.003
 Authors@R: c(
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-2172-5265"))
+           comment = c(ORCID = "0000-0003-2172-5265")),
+    person("Patrick", "Boettcher", role = "cph",
+            comment = "Original author of included 'pboettch/json-schema-validator' code"),
+    person("Niels", "Lohmann", role = "cph",
+            comment = "Original author of included 'nlohmann/json' code")
     )
 Description: Use a 'JSON' schema to validate a local 'JSON' file.
 Imports:
